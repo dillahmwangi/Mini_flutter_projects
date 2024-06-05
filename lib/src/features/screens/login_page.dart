@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:mini_projects/src/components/my_button.dart';
 import 'package:mini_projects/src/components/my_textfield.dart';
 
-
-
 class LoginPage extends StatelessWidget {
-
   //email and password text controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
 
-   LoginPage({super.key});
-   
-   //login method
-   void login () {}
+  //tap to go to register page
+  final void Function()? onTap;
 
+  LoginPage({super.key, required this.onTap});
+
+  //login method
+  void login() {}
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +30,18 @@ class LoginPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
               const SizedBox(height: 50),
-              
+
               //Welcome back message
               Text(
                 "Welcome back you've been missed ",
-
-                style:TextStyle(
-                   color: Theme.of(context).colorScheme.primary,
-                   fontSize: 16,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 16,
                 ),
-
               ),
-              const SizedBox(height: 25,),
+              const SizedBox(
+                height: 25,
+              ),
 
               //email textfield
               MyTextField(
@@ -54,47 +53,45 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 10),
 
               //password textfield
-                MyTextField(
+              MyTextField(
                 hintText: "Password",
                 obscureText: true,
-                controller:_pwController,
+                controller: _pwController,
               ),
-
 
               const SizedBox(height: 25),
 
               //login button
               MyButton(
-              text: "Login", 
-              onTap: login,
-          ),
+                text: "Login",
+                onTap: login,
+              ),
 
-          const SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               //register now
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Not a member?",
-                    style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),
-                  
-                   const Text("Register now",
-                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                   ),
-                   ),
-
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      "Register now",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.outline,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-
-          
             ],
           ),
         ));
   }
 }
-
-
-
