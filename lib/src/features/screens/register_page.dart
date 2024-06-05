@@ -6,16 +6,21 @@ class RegisterPage extends StatelessWidget {
   //email and password text controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
+  final TextEditingController _confirmPwController = TextEditingController();
 
-  RegisterPage({super.key});
+  //tap to go to login page
+  final void Function()? onTap;
 
-   //register method
-   void register () {}
+  RegisterPage({super.key, 
+  required this.onTap});
+
+  //register method
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -27,18 +32,18 @@ class RegisterPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
               const SizedBox(height: 50),
-              
-              //Welcome back message
+
+              //create an account message
               Text(
-                "Welcome back you've been missed ",
-
-                style:TextStyle(
-                   color: Theme.of(context).colorScheme.primary,
-                   fontSize: 16,
+                "Lets create an account for you",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 16,
                 ),
-
               ),
-              const SizedBox(height: 25,),
+              const SizedBox(
+                height: 25,
+              ),
 
               //email textfield
               MyTextField(
@@ -50,45 +55,54 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 10),
 
               //password textfield
-                MyTextField(
+              MyTextField(
                 hintText: "Password",
                 obscureText: true,
-                controller:_pwController,
+                controller: _pwController,
               ),
 
+              const SizedBox(height: 25),
+
+              //confirm password textfield
+              MyTextField(
+                hintText: "Confirm Password",
+                obscureText: true,
+                controller: _confirmPwController,
+              ),
 
               const SizedBox(height: 25),
 
               //login button
               MyButton(
-              text: "Register", 
-              onTap: register,
-          ),
+                text: "Register",
+                onTap: register,
+              ),
 
-          const SizedBox(height: 25),
+              const SizedBox(height: 25),
 
               //register now
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Not a member?",
-                    style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                    "Already have an Account?",
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),
-                  
-                   const Text("Register now",
-                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                   ),
-                   ),
-
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      "Login now",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.outline,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-
-          
             ],
           ),
-
-    ));
+        ));
   }
 }
