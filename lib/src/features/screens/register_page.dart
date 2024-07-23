@@ -52,7 +52,7 @@ class RegisterPage extends StatelessWidget {
                 controller: _emailController,
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 25),
 
               //password textfield
               MyTextField(
