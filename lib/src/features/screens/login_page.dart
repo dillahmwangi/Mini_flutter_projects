@@ -85,6 +85,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.outline,
                         fontWeight: FontWeight.bold,
+                        fontSize:12,
                       ),
                     ),
                   ),
